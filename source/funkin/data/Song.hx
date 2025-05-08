@@ -437,12 +437,6 @@ class Song extends BaseSong
 			}else {
 				for (fileName in crumb) processFileName(fileName);
 			}
-
-			////
-			#if PE_MOD_COMPATIBILITY
-			folder = Paths.mods('${song.folder}/data/$songId/');
-			Paths.iterateDirectory(folder, processFileName);
-			#end
 		}
 		#else
 		

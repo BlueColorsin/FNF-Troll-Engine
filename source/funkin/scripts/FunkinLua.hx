@@ -454,26 +454,6 @@ class FunkinLua extends FunkinScript
 			PlayState.instance.removeLua(luaInstance);
 		});
 
-		addCallback("loadSong", function(?name:String = null, ?difficultyNum:Int = 1) {
-			if(name == null || name.length < 1)
-				name = PlayState.SONG.song;
-
-			var poop = Paths.formatToSongPath(name);
-			PlayState.SONG = funkin.data.Song.loadFromJson(poop, name);
-			PlayState.instance.persistentUpdate = false;
-			PlayState.difficulty = difficultyNum;
-			PlayState.difficultyName = '';
-			LoadingState.loadAndSwitchState(new PlayState());
-
-			FlxG.sound.music.pause();
-			FlxG.sound.music.volume = 0;
-			if(PlayState.instance.vocals != null)
-			{
-				PlayState.instance.vocals.pause();
-				PlayState.instance.vocals.volume = 0;
-			}
-		});
-
 		addCallback("clearUnusedMemory", function() {
 			Paths.clearUnusedMemory();
 			return true;
