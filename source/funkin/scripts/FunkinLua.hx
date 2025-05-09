@@ -55,6 +55,9 @@ class FunkinLua extends FunkinScript
 		var lua:State = LuaL.newstate();
 		LuaL.openlibs(lua);
 
+		if (name == null) name = path;
+		var lua_file:FunkinLua = new FunkinLua(lua, name, ignoreCreateCall, vars);
+
 		try {
 			var result:Dynamic = LuaL.dofile(lua, path);
 			var resultStr:String = Lua.tostring(lua, result);
@@ -82,8 +85,7 @@ class FunkinLua extends FunkinScript
 			lua = null;
 		}
 
-		if (name == null) name = path;
-		return new FunkinLua(lua, name, ignoreCreateCall, vars);
+		return lua_file;
 	}
 
 	inline private function addCallback(name:String, func:Function):Void
